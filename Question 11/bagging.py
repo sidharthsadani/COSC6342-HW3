@@ -1,12 +1,13 @@
 from sklearn.ensemble import BaggingClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
+contents = []
 with open("iosphere_data.txt") as f:
-    contents = f.readlines()
+    for line in f:
+        contents.append([s for s in line.strip().split(',')])
 
-contents = [x.strip('\n').split(',') for x in contents] 
-
-#for content in contents:
-    #print (content)
-        
-print (contents)
+X = [[float(p) for p in ex[:-1]] for ex in contents]
+Y = [1.0 if sublist[-1]=='g' else 0.0 for sublist in contents]
+print([s[-1] for s in contents])
+print(X)
+print(Y)

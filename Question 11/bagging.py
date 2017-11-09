@@ -10,12 +10,18 @@
 #Github tutorial for ensemble methods
 #https://github.com/knathanieltucker/bit-of-data-science-and-scikit-learn/blob/master/notebooks/EnsembleMethods.ipynb
 
+#plotting example in scikit learn
+#http://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html
+
 #Team Members
 #Chieh Chen ppsid 0837931
 #Sidharth Sadani
 
 from sklearn.ensemble import BaggingClassifier
 from sklearn.neighbors import KNeighborsClassifier
+
+#matplot library from example in scikit learn
+import matplotlib.pyplot as plt
 
 import numpy as np
 

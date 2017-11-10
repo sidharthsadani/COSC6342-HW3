@@ -19,6 +19,9 @@
 
 from sklearn.ensemble import BaggingClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import ExtraTreesClassifier
+from sklearn.tree import DecisionTreeClassifier
 
 #matplot library from example in scikit learn
 import matplotlib.pyplot as plt
@@ -49,14 +52,29 @@ print(Y)
 X = np.array(X)
 Y = np.array(Y)
 
-mIris = KNeighborsClassifier()
+KIris = KNeighborsClassifier()
+RIris = RandomForestClassifier()
+DIris = DecisionTreeClassifier()
+
 #set with max_sample at .5 nd max feature at .5
-baggingIris = BaggingClassifier(
-                mIris,
+baggingKNeighorIris = BaggingClassifier(
+                KIris,
                 max_samples=.5,
                 max_features=.5)
 
+baggingKRandomForestIris = BaggingClassifier(
+                RIris,
+                max_samples=.5,
+                max_features=.5)
+
+baggingDTreetIris = BaggingClassifier(
+                DIris,
+                max_samples=.5,
+                max_features=.5)
+
+
 mIosphere = KNeighborsClassifier(n_neighbors=3)
+
 baggingIosphere = BaggingClassifier(
                 mIosphere,
                 max_samples=.5,
@@ -67,9 +85,16 @@ baggingIosphere = BaggingClassifier(
 #using cross_valication score
 from sklearn.model_selection import cross_val_score
 #bagging the iris dataset
-baggingIrisScore = cross_val_score(baggingIris, Iris_X, Iris_y)
+baggingIrisbaggingKNeighorIrisScore = cross_val_score(baggingKNeighorIris , Iris_X, Iris_y)
+baggingIrisbaggingRandomForestIrisScore = cross_val_score(baggingKRandomForestIris , Iris_X, Iris_y)
+baggingDTreetIrisScore = cross_val_score(baggingDTreetIris , Iris_X, Iris_y)
+
 #print bagging score mean
-print(baggingIrisScore.mean())
+
+
+print(baggingIrisbaggingKNeighorIrisScore.mean())
+print(baggingIrisbaggingRandomForestIrisScore.mean())
+print(baggingDTreetIrisScore.mean())
 
 
 

@@ -42,59 +42,55 @@ with open("iosphere_data.txt") as f:
         contents.append([s for s in line.strip().split(',')])
 
 X = [[float(p) for p in ex[:-1]] for ex in contents]
-Y = [True if sublist[-1] == 'g' else False for sublist in contents]
-print([s[-1] for s in contents])
+Y = [1 if sublist[-1] == 'g' else 0 for sublist in contents]
+
+#print below to show the result of the cleaned x and y data from iosphere dataset
+
+#print([s[-1] for s in contents])
+#print(X)
+#print(Y)
 
 
-print(X)
-print(Y)
+#casting iosphere x and y onto numpy array
 
-X = np.array(X)
-Y = np.array(Y)
+IosphereX = np.array(X)
+IosphereY = np.array(Y)
 
-KIris = KNeighborsClassifier()
-RIris = RandomForestClassifier()
-DIris = DecisionTreeClassifier()
+KClass = KNeighborsClassifier()
+RClass = RandomForestClassifier()
+DClass = DecisionTreeClassifier()
 
 #set with max_sample at .5 nd max feature at .5
-baggingKNeighorIris = BaggingClassifier(
-                KIris,
-                max_samples=.5,
-                max_features=.5)
+baggingKNeighbor = BaggingClassifier(
+                KClass)
 
-baggingKRandomForestIris = BaggingClassifier(
-                RIris,
-                max_samples=.5,
-                max_features=.5)
+baggingRForest = BaggingClassifier(
+                RClass)
 
-baggingDTreetIris = BaggingClassifier(
-                DIris,
-                max_samples=.5,
-                max_features=.5)
-
-
-mIosphere = KNeighborsClassifier(n_neighbors=3)
-
-baggingIosphere = BaggingClassifier(
-                mIosphere,
-                max_samples=.5,
-                max_features=2,
-                n_jobs=2,
-                oob_score=True)
+baggingDTree = BaggingClassifier(
+                DClass)
 
 #using cross_valication score
 from sklearn.model_selection import cross_val_score
 #bagging the iris dataset
-baggingIrisbaggingKNeighorIrisScore = cross_val_score(baggingKNeighorIris , Iris_X, Iris_y)
-baggingIrisbaggingRandomForestIrisScore = cross_val_score(baggingKRandomForestIris , Iris_X, Iris_y)
-baggingDTreetIrisScore = cross_val_score(baggingDTreetIris , Iris_X, Iris_y)
+
+baggingIrisKNeighborIrisScore = cross_val_score(baggingKNeighbor, Iris_X, Iris_y)
+baggingIrisRForestIrisScore = cross_val_score(baggingRForest, Iris_X, Iris_y)
+baggingIrisDTreeScore = cross_val_score(baggingDTree, Iris_X, Iris_y)
+
+baggingIosphereKNeighborScore = cross_val_score(baggingKNeighbor, IosphereX, IosphereY)
+baggingIosphereRForestScore = cross_val_score(baggingRForest, IosphereX, IosphereY)
+baggingIosphereDTreeScore = cross_val_score(baggingDTree, IosphereX, IosphereY)
 
 #print bagging score mean
 
 
-print(baggingIrisbaggingKNeighorIrisScore.mean())
-print(baggingIrisbaggingRandomForestIrisScore.mean())
-print(baggingDTreetIrisScore.mean())
+print(baggingIrisKNeighborIrisScore.mean())
+print(baggingIrisRForestIrisScore.mean())
+print(baggingIrisDTreeScore.mean())
 
+print(baggingIosphereKNeighborScore.mean())
+print(baggingIosphereRForestScore.mean())
+print(baggingIosphereDTreeScore.mean())
 
 

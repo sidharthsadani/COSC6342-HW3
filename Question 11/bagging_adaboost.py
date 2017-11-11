@@ -118,24 +118,24 @@ adaBoostDTree = AdaBoostClassifier(DClass)
 from sklearn.model_selection import cross_val_score, KFold, cross_val_predict
 from sklearn.metrics import r2_score as r2
 
-irisBaggingKNeighbor = baggingKNeighbor.fit(Iris_X, Iris_y)
-irisBaggingRForest = baggingRForest.fit(Iris_X, Iris_y)
-irisBaggingDTree = baggingDTree.fit(Iris_X, Iris_y)
-
-iosphereBaggingKNeighbor = baggingKNeighbor.fit(IosphereX, IosphereY)
-iosphereBaggingRForest = baggingRForest.fit(IosphereX, IosphereY)
-iosphereBaggingDTree = baggingDTree.fit(IosphereX, IosphereY)
-
-irisAdaETree = adaBoostEClass.fit(Iris_X, Iris_y)
-irisAdaRForest = adaBoostRForest.fit(Iris_X, Iris_y)
-irisAdaDTree = adaBoostDTree.fit(Iris_X, Iris_y)
-
-iosphereAdaETree = adaBoostEClass.fit(IosphereX, IosphereY)
-iosphereAdaRForest = adaBoostRForest.fit(IosphereX, IosphereY)
-iosphereAdaDTree = adaBoostDTree.fit(IosphereX, IosphereY)
-
-models = (irisBaggingKNeighbor, irisBaggingRForest, irisBaggingDTree, irisAdaETree,irisAdaRForest, irisAdaDTree)
-titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'irisAdaETree', 'irisAdaRForest', 'irisAdaDTree')
+# irisBaggingKNeighbor = baggingKNeighbor.fit(Iris_X, Iris_y)
+# irisBaggingRForest = baggingRForest.fit(Iris_X, Iris_y)
+# irisBaggingDTree = baggingDTree.fit(Iris_X, Iris_y)
+#
+# iosphereBaggingKNeighbor = baggingKNeighbor.fit(IosphereX, IosphereY)
+# iosphereBaggingRForest = baggingRForest.fit(IosphereX, IosphereY)
+# iosphereBaggingDTree = baggingDTree.fit(IosphereX, IosphereY)
+#
+# irisAdaETree = adaBoostEClass.fit(Iris_X, Iris_y)
+# irisAdaRForest = adaBoostRForest.fit(Iris_X, Iris_y)
+# irisAdaDTree = adaBoostDTree.fit(Iris_X, Iris_y)
+#
+# iosphereAdaETree = adaBoostEClass.fit(IosphereX, IosphereY)
+# iosphereAdaRForest = adaBoostRForest.fit(IosphereX, IosphereY)
+# iosphereAdaDTree = adaBoostDTree.fit(IosphereX, IosphereY)
+#
+# models = (irisBaggingKNeighbor, irisBaggingRForest, irisBaggingDTree, irisAdaETree,irisAdaRForest, irisAdaDTree)
+# titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'irisAdaETree', 'irisAdaRForest', 'irisAdaDTree')
 
 # models = (irisBaggingKNeighbor, irisBaggingRForest, irisAdaDTree, iosphereBaggingKNeighbor, iosphereBaggingRForest,
 #           iosphereBaggingDTree, irisAdaETree,irisAdaRForest, irisAdaDTree, iosphereAdaETree, iosphereAdaRForest,
@@ -143,7 +143,7 @@ titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'iri
 # titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'iosphereBaggingKNeighbor',
 #           'iosphereBaggingRForest',   'iosphereBaggingDTree', 'irisAdaETree', 'irisAdaRForest', 'irisAdaDTree',
 #           'iosphereAdaETree', 'iosphereAdaRForest',  'iosphereAdaDTree')
-
+#
 # plt.figure(figsize=(8, 8))
 # plt.subplots_adjust(bottom=.05, top=.9, left=.05, right=.95)
 # plt.subplot(321)

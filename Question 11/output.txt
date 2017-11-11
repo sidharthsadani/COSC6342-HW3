@@ -1,0 +1,240 @@
+==============================================
+==============================================
+with Kfold of 2
+==============================================
+========================
+Bagging mean score
+========================
+Average score for bagging using KNeighbor - Iris: 0.306666666667
+Average score for bagging using Random Forest - Iris: 0.32
+Average score for bagging using Decision Tree - Iris: 0.326666666667
+
+Average score for bagging using KNeighbor - Iosphere: 0.80375
+Average score for bagging using Random Forest - Iosphere: 0.917483766234
+Average score for bagging using Decision Tree - Iosphere: 0.91461038961
+
+========================
+Bagging prediction accuracy
+========================
+Prediction accuracy for bagging using KNeighbor - Iris: -0.03
+Prediction accuracy for bagging using Random Forest - Iris: -0.02
+Prediction accuracy for bagging using Decision Tree - Iris: -0.03
+
+Prediction accuracy for bagging using KNeighbor - Iosphere: 0.281904761905
+Prediction accuracy for bagging using Random Forest - Iosphere: 0.640952380952
+Prediction accuracy for bagging using Decision Tree - Iosphere: 0.579047619048
+
+========================
+AdaBoost mean score
+========================
+Average score for adaBoost using Extra Tree - Iris: 0.326666666667
+Average score for adaBoost using Random Forest - Iris: 0.32
+Average score for adaBoost using Decision Tree - Iris: 0.326666666667
+
+Average score for adaBoost using Extra Tree - Iosphere: 0.891899350649
+Average score for adaBoost using Random Forest - Iosphere: 0.900324675325
+Average score for adaBoost using Decision Tree - Iosphere: 0.871883116883
+
+========================
+AdaBoost prediction accuracy
+========================
+Prediction accuracy for adaBoost using Extra Tree - Iris: -0.01
+Prediction accuracy for adaBoost using Random Forest - Iris: -0.06
+Prediction accuracy for adaBoost using Decision Tree - Iris: -0.02
+
+Prediction accuracy for adaBoost using Extra Tree - Iosphere: 0.566666666667
+Prediction accuracy for adaBoost using Random Forest - Iosphere: 0.640952380952
+Prediction accuracy for adaBoost using Decision Tree - Iosphere: 0.393333333333
+
+==============================================
+==============================================
+with Kfold of 4
+==============================================
+========================
+Bagging mean score
+========================
+Average score for bagging using KNeighbor - Iris: 0.879089615932
+Average score for bagging using Random Forest - Iris: 0.90593883357
+Average score for bagging using Decision Tree - Iris: 0.91233997155
+
+Average score for bagging using KNeighbor - Iosphere: 0.840843782654
+Average score for bagging using Random Forest - Iosphere: 0.928911964472
+Average score for bagging using Decision Tree - Iosphere: 0.906021421108
+
+========================
+Bagging prediction accuracy
+========================
+Prediction accuracy for bagging using KNeighbor - Iris: 0.85
+Prediction accuracy for bagging using Random Forest - Iris: 0.87
+Prediction accuracy for bagging using Decision Tree - Iris: 0.88
+
+Prediction accuracy for bagging using KNeighbor - Iosphere: 0.22
+Prediction accuracy for bagging using Random Forest - Iosphere: 0.715238095238
+Prediction accuracy for bagging using Decision Tree - Iosphere: 0.579047619048
+
+========================
+AdaBoost mean score
+========================
+Average score for adaBoost using Extra Tree - Iris: 0.919274537696
+Average score for adaBoost using Random Forest - Iris: 0.91233997155
+Average score for adaBoost using Decision Tree - Iris: 0.8856685633
+
+Average score for adaBoost using Extra Tree - Iosphere: 0.9203892372
+Average score for adaBoost using Random Forest - Iosphere: 0.917548328109
+Average score for adaBoost using Decision Tree - Iosphere: 0.894657784744
+
+========================
+AdaBoost prediction accuracy
+========================
+Prediction accuracy for adaBoost using Extra Tree - Iris: 0.87
+Prediction accuracy for adaBoost using Random Forest - Iris: 0.88
+Prediction accuracy for adaBoost using Decision Tree - Iris: 0.83
+
+Prediction accuracy for adaBoost using Extra Tree - Iosphere: 0.640952380952
+Prediction accuracy for adaBoost using Random Forest - Iosphere: 0.665714285714
+Prediction accuracy for adaBoost using Decision Tree - Iosphere: 0.541904761905
+
+==============================================
+==============================================
+with Kfold of 6
+==============================================
+========================
+Bagging mean score
+========================
+Average score for bagging using KNeighbor - Iris: 0.926666666667
+Average score for bagging using Random Forest - Iris: 0.94
+Average score for bagging using Decision Tree - Iris: 0.933333333333
+
+Average score for bagging using KNeighbor - Iosphere: 0.826806935515
+Average score for bagging using Random Forest - Iosphere: 0.940385739334
+Average score for bagging using Decision Tree - Iosphere: 0.906341320865
+
+========================
+Bagging prediction accuracy
+========================
+Prediction accuracy for bagging using KNeighbor - Iris: 0.87
+Prediction accuracy for bagging using Random Forest - Iris: 0.9
+Prediction accuracy for bagging using Decision Tree - Iris: 0.91
+
+Prediction accuracy for bagging using KNeighbor - Iosphere: 0.244761904762
+Prediction accuracy for bagging using Random Forest - Iosphere: 0.702857142857
+Prediction accuracy for bagging using Decision Tree - Iosphere: 0.579047619048
+
+========================
+AdaBoost mean score
+========================
+Average score for adaBoost using Extra Tree - Iris: 0.926666666667
+Average score for adaBoost using Random Forest - Iris: 0.913333333333
+Average score for adaBoost using Decision Tree - Iris: 0.913333333333
+
+Average score for adaBoost using Extra Tree - Iosphere: 0.93473602182
+Average score for adaBoost using Random Forest - Iosphere: 0.926261445548
+Average score for adaBoost using Decision Tree - Iosphere: 0.846629651276
+
+========================
+AdaBoost prediction accuracy
+========================
+Prediction accuracy for adaBoost using Extra Tree - Iris: 0.9
+Prediction accuracy for adaBoost using Random Forest - Iris: 0.91
+Prediction accuracy for adaBoost using Decision Tree - Iris: 0.88
+
+Prediction accuracy for adaBoost using Extra Tree - Iosphere: 0.727619047619
+Prediction accuracy for adaBoost using Random Forest - Iosphere: 0.640952380952
+Prediction accuracy for adaBoost using Decision Tree - Iosphere: 0.34380952381
+
+==============================================
+==============================================
+with Kfold of 8
+==============================================
+========================
+Bagging mean score
+========================
+Average score for bagging using KNeighbor - Iris: 0.967105263158
+Average score for bagging using Random Forest - Iris: 0.952850877193
+Average score for bagging using Decision Tree - Iris: 0.945906432749
+
+Average score for bagging using KNeighbor - Iosphere: 0.82379756871
+Average score for bagging using Random Forest - Iosphere: 0.923229386892
+Average score for bagging using Decision Tree - Iosphere: 0.889072410148
+
+========================
+Bagging prediction accuracy
+========================
+Prediction accuracy for bagging using KNeighbor - Iris: 0.93
+Prediction accuracy for bagging using Random Forest - Iris: 0.93
+Prediction accuracy for bagging using Decision Tree - Iris: 0.92
+
+Prediction accuracy for bagging using KNeighbor - Iosphere: 0.22
+Prediction accuracy for bagging using Random Forest - Iosphere: 0.715238095238
+Prediction accuracy for bagging using Decision Tree - Iosphere: 0.529523809524
+
+========================
+AdaBoost mean score
+========================
+Average score for adaBoost using Extra Tree - Iris: 0.945906432749
+Average score for adaBoost using Random Forest - Iris: 0.946271929825
+Average score for adaBoost using Decision Tree - Iris: 0.946271929825
+
+Average score for adaBoost using Extra Tree - Iosphere: 0.926070295983
+Average score for adaBoost using Random Forest - Iosphere: 0.937433932347
+Average score for adaBoost using Decision Tree - Iosphere: 0.886165433404
+
+========================
+AdaBoost prediction accuracy
+========================
+Prediction accuracy for adaBoost using Extra Tree - Iris: 0.93
+Prediction accuracy for adaBoost using Random Forest - Iris: 0.91
+Prediction accuracy for adaBoost using Decision Tree - Iris: 0.93
+
+Prediction accuracy for adaBoost using Extra Tree - Iosphere: 0.690476190476
+Prediction accuracy for adaBoost using Random Forest - Iosphere: 0.727619047619
+Prediction accuracy for adaBoost using Decision Tree - Iosphere: 0.492380952381
+
+==============================================
+==============================================
+with Kfold of 10
+==============================================
+========================
+Bagging mean score
+========================
+Average score for bagging using KNeighbor - Iris: 0.946666666667
+Average score for bagging using Random Forest - Iris: 0.94
+Average score for bagging using Decision Tree - Iris: 0.946666666667
+
+Average score for bagging using KNeighbor - Iosphere: 0.835079365079
+Average score for bagging using Random Forest - Iosphere: 0.937222222222
+Average score for bagging using Decision Tree - Iosphere: 0.914603174603
+
+========================
+Bagging prediction accuracy
+========================
+Prediction accuracy for bagging using KNeighbor - Iris: 0.92
+Prediction accuracy for bagging using Random Forest - Iris: 0.9
+Prediction accuracy for bagging using Decision Tree - Iris: 0.9
+
+Prediction accuracy for bagging using KNeighbor - Iosphere: 0.232380952381
+Prediction accuracy for bagging using Random Forest - Iosphere: 0.702857142857
+Prediction accuracy for bagging using Decision Tree - Iosphere: 0.566666666667
+
+========================
+AdaBoost mean score
+========================
+Average score for adaBoost using Extra Tree - Iris: 0.926666666667
+Average score for adaBoost using Random Forest - Iris: 0.933333333333
+Average score for adaBoost using Decision Tree - Iris: 0.946666666667
+
+Average score for adaBoost using Extra Tree - Iosphere: 0.93753968254
+Average score for adaBoost using Random Forest - Iosphere: 0.923015873016
+Average score for adaBoost using Decision Tree - Iosphere: 0.87753968254
+
+========================
+AdaBoost prediction accuracy
+========================
+Prediction accuracy for adaBoost using Extra Tree - Iris: 0.92
+Prediction accuracy for adaBoost using Random Forest - Iris: 0.92
+Prediction accuracy for adaBoost using Decision Tree - Iris: 0.91
+
+Prediction accuracy for adaBoost using Extra Tree - Iosphere: 0.715238095238
+Prediction accuracy for adaBoost using Random Forest - Iosphere: 0.727619047619
+Prediction accuracy for adaBoost using Decision Tree - Iosphere: 0.48
+

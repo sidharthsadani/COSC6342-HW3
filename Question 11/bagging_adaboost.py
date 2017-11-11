@@ -25,17 +25,56 @@ from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import VotingClassifier
 from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn import svm
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+from sklearn import datasets
 
 #matplot library from example in scikit learn
-import matplotlib.pyplot as plt
-
 import numpy as np
 
 #using this for the other data set needed -- scikit leanr already included dataset
 import sklearn.datasets as data_sets
+
+#make meshgrid method from http://scikit-learn.org/stable/auto_examples/svm/plot_iris.html
+def make_meshgrid(x, y, h=.02):
+    """Create a mesh of points to plot in
+
+    Parameters
+    ----------
+    x: data to base x-axis meshgrid on
+    y: data to base y-axis meshgrid on
+    h: stepsize for meshgrid, optional
+
+    Returns
+    -------
+    xx, yy : ndarray
+    """
+    x_min, x_max = x.min() - 1, x.max() + 1
+    y_min, y_max = y.min() - 1, y.max() + 1
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+    return xx, yy
+
+def plot_contours(ax, clf, xx, yy, **params):
+    """Plot the decision boundaries for a classifier.
+
+    Parameters
+    ----------
+    ax: matplotlib axes object
+    clf: a classifier
+    xx: meshgrid ndarray
+    yy: meshgrid ndarray
+    params: dictionary of params to pass to contourf, optional
+    """
+    Z = clf.predict(np.c_[xx.ravel(), yy.ravel()])
+    Z = Z.reshape(xx.shape)
+    out = ax.contourf(xx, yy, Z, **params)
+    return out
+
 #using the iris dataset from scikit learn
 Iris_X, Iris_y = data_sets.load_iris(return_X_y=True)
-
+iris = data_sets.load_iris()
 
 contents = []
 #loading and reading iosphere dataset with comma separated format with newline
@@ -76,8 +115,45 @@ adaBoostRForest = AdaBoostClassifier(RClass)
 adaBoostDTree = AdaBoostClassifier(DClass)
 
 #using cross_valication score
-from sklearn.model_selection import cross_val_score, KFold , cross_val_predict
+from sklearn.model_selection import cross_val_score, KFold, cross_val_predict
 from sklearn.metrics import r2_score as r2
+
+irisBaggingKNeighbor = baggingKNeighbor.fit(Iris_X, Iris_y)
+irisBaggingRForest = baggingRForest.fit(Iris_X, Iris_y)
+irisBaggingDTree = baggingDTree.fit(Iris_X, Iris_y)
+
+iosphereBaggingKNeighbor = baggingKNeighbor.fit(IosphereX, IosphereY)
+iosphereBaggingRForest = baggingRForest.fit(IosphereX, IosphereY)
+iosphereBaggingDTree = baggingDTree.fit(IosphereX, IosphereY)
+
+irisAdaETree = adaBoostEClass.fit(Iris_X, Iris_y)
+irisAdaRForest = adaBoostRForest.fit(Iris_X, Iris_y)
+irisAdaDTree = adaBoostDTree.fit(Iris_X, Iris_y)
+
+iosphereAdaETree = adaBoostEClass.fit(IosphereX, IosphereY)
+iosphereAdaRForest = adaBoostRForest.fit(IosphereX, IosphereY)
+iosphereAdaDTree = adaBoostDTree.fit(IosphereX, IosphereY)
+
+models = (irisBaggingKNeighbor, irisBaggingRForest, irisBaggingDTree, irisAdaETree,irisAdaRForest, irisAdaDTree)
+titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'irisAdaETree', 'irisAdaRForest', 'irisAdaDTree')
+
+# models = (irisBaggingKNeighbor, irisBaggingRForest, irisAdaDTree, iosphereBaggingKNeighbor, iosphereBaggingRForest,
+#           iosphereBaggingDTree, irisAdaETree,irisAdaRForest, irisAdaDTree, iosphereAdaETree, iosphereAdaRForest,
+#           iosphereAdaDTree)
+# titles = ('irisBaggingKNeighbor', 'irisBaggingRForest', 'irisBaggingDTree', 'iosphereBaggingKNeighbor',
+#           'iosphereBaggingRForest',   'iosphereBaggingDTree', 'irisAdaETree', 'irisAdaRForest', 'irisAdaDTree',
+#           'iosphereAdaETree', 'iosphereAdaRForest',  'iosphereAdaDTree')
+
+# plt.figure(figsize=(8, 8))
+# plt.subplots_adjust(bottom=.05, top=.9, left=.05, right=.95)
+# plt.subplot(321)
+#
+# plt.scatter(X1[:, 0], X1[:, 1], marker='o', c=Y1,
+#             s=25, edgecolor='k')
+#
+# plt.show()
+
+
 
 for i in range(2,11,2):
     print('==============================================')
@@ -98,6 +174,7 @@ for i in range(2,11,2):
     baggingIrisKNeighborIrisPredict = r2(Iris_y, cross_val_predict(baggingKNeighbor, Iris_X, Iris_y, cv=kf))
     baggingIrisRForestIrisPredict = r2(Iris_y, cross_val_predict(baggingRForest, Iris_X, Iris_y, cv=kf))
     baggingIrisDTreePredict = r2(Iris_y, cross_val_predict(baggingDTree, Iris_X, Iris_y, cv=kf))
+
 
     #bagging iosphere dataset
     baggingIosphereKNeighborScore = cross_val_score(baggingKNeighbor, IosphereX, IosphereY, cv=kf)
@@ -203,6 +280,9 @@ for i in range(2,11,2):
     print('Prediction accuracy for adaBoost using Decision Tree - Iosphere:',  adaBoostIosphereDTreePredict)
 
     print()
+
+
+
 
 
 

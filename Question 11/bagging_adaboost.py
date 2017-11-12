@@ -15,7 +15,7 @@
 
 #Team Members
 #Chieh Chen ppsid 0837931
-#Sidharth Sadani
+#Sidharth Sadani ppsid 1503352
 
 from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import AdaBoostClassifier

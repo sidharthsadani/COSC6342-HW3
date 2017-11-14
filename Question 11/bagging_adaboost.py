@@ -153,10 +153,16 @@ from sklearn.metrics import r2_score as r2
 #
 # plt.show()
 
+# baggingKNeighbor = BaggingClassifier(KClass)
+# baggingRForest = BaggingClassifier(RClass)
+# baggingDTree = BaggingClassifier(DClass)
+#
+# adaBoostEClass = AdaBoostClassifier(EClass)
+# adaBoostRForest = AdaBoostClassifier(RClass)
+# adaBoostDTree = AdaBoostClassifier(DClass)
 
 
 for i in range(2,11,2):
-    print('==============================================')
     print('==============================================')
     print('with Kfold of', i)
     print('==============================================')
@@ -167,119 +173,363 @@ for i in range(2,11,2):
 
     #bagging the iris dataset
 
-    baggingIrisKNeighborIrisScore = cross_val_score(baggingKNeighbor, Iris_X, Iris_y, cv=kf)
-    baggingIrisRForestIrisScore = cross_val_score(baggingRForest, Iris_X, Iris_y, cv=kf)
-    baggingIrisDTreeScore = cross_val_score(baggingDTree, Iris_X, Iris_y, cv=kf)
+    print ("Iris dataset")
 
-    baggingIrisKNeighborIrisPredict = r2(Iris_y, cross_val_predict(baggingKNeighbor, Iris_X, Iris_y, cv=kf))
-    baggingIrisRForestIrisPredict = r2(Iris_y, cross_val_predict(baggingRForest, Iris_X, Iris_y, cv=kf))
-    baggingIrisDTreePredict = r2(Iris_y, cross_val_predict(baggingDTree, Iris_X, Iris_y, cv=kf))
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        baggingKNeighbor.fit(Xtrain, ytrain)
+        train_error += baggingKNeighbor.score(Xtrain, ytrain) # train error
+        cv_error += baggingKNeighbor.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingKNeighbor train error,", train_error,  ",baggingKNeighbor cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        baggingRForest.fit(Xtrain, ytrain)
+        train_error += baggingRForest.score(Xtrain, ytrain) # train error
+        cv_error += baggingRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("baggingRForest train error,", train_error, ",baggingRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset  = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        baggingDTree.fit(Xtrain, ytrain)
+        train_error += baggingDTree.score(Xtrain, ytrain) # train error
+        cv_error += baggingDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingDTree train error,", train_error, ",baggingDTree cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        adaBoostEClass.fit(Xtrain, ytrain)
+        train_error += adaBoostEClass.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostEClass.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostEClass train error,", train_error,  ",adaBoostEClass cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        adaBoostRForest.fit(Xtrain, ytrain)
+        train_error += adaBoostRForest.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("adaBoostRForest train error,", train_error, ",adaBoostRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(Iris_X):
+        Xtrain , Xcrosset  = Iris_X[train_index], Iris_X[cross_index]
+        ytrain , ycrosset = Iris_y[train_index], Iris_y[cross_index]
+        adaBoostDTree.fit(Xtrain, ytrain)
+        train_error += adaBoostDTree.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostDTree train error,", train_error, ",adaBoostDTree cv error,", cv_error)
+
+    print ("Iosphere dataset")
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingKNeighbor.fit(Xtrain, ytrain)
+        train_error += baggingKNeighbor.score(Xtrain, ytrain) # train error
+        cv_error += baggingKNeighbor.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingKNeighbor train error,", train_error,  ",baggingKNeighbor cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingRForest.fit(Xtrain, ytrain)
+        train_error += baggingRForest.score(Xtrain, ytrain) # train error
+        cv_error += baggingRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("baggingRForest train error,", train_error, ",baggingRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingDTree.fit(Xtrain, ytrain)
+        train_error += baggingDTree.score(Xtrain, ytrain) # train error
+        cv_error += baggingDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingDTree train error,", train_error, ",baggingDTree cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostEClass.fit(Xtrain, ytrain)
+        train_error += adaBoostEClass.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostEClass.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostEClass train error,", train_error,  ",adaBoostEClass cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostRForest.fit(Xtrain, ytrain)
+        train_error += adaBoostRForest.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("adaBoostRForest train error,", train_error, ",adaBoostRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostDTree.fit(Xtrain, ytrain)
+        train_error += adaBoostDTree.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostDTree train error,", train_error, ",adaBoostDTree cv error,", cv_error)
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingKNeighbor.fit(Xtrain, ytrain)
+        train_error += baggingKNeighbor.score(Xtrain, ytrain) # train error
+        cv_error += baggingKNeighbor.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingKNeighbor train error,", train_error,  ",baggingKNeighbor cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingRForest.fit(Xtrain, ytrain)
+        train_error += baggingRForest.score(Xtrain, ytrain) # train error
+        cv_error += baggingRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("baggingRForest train error,", train_error, ",baggingRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        baggingDTree.fit(Xtrain, ytrain)
+        train_error += baggingDTree.score(Xtrain, ytrain) # train error
+        cv_error += baggingDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("baggingDTree train error,", train_error, ",baggingDTree cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostEClass.fit(Xtrain, ytrain)
+        train_error += adaBoostEClass.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostEClass.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostEClass train error,", train_error,  ",adaBoostEClass cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostRForest.fit(Xtrain, ytrain)
+        train_error += adaBoostRForest.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostRForest.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+    print("adaBoostRForest train error,", train_error, ",adaBoostRForest cv error,", cv_error)
+
+    train_error, cv_error = 0.0, 0.0
+    for train_index, cross_index in kf.split(IosphereX):
+        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
+        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
+        adaBoostDTree.fit(Xtrain, ytrain)
+        train_error += adaBoostDTree.score(Xtrain, ytrain) # train error
+        cv_error += adaBoostDTree.score(Xcrosset, ycrosset) # cv error
+
+    train_error /= i
+    cv_error /= i
+
+    print("adaBoostDTree train error,", train_error, ",adaBoostDTree cv error,", cv_error)
 
 
-    #bagging iosphere dataset
-    baggingIosphereKNeighborScore = cross_val_score(baggingKNeighbor, IosphereX, IosphereY, cv=kf)
-    baggingIosphereRForestScore = cross_val_score(baggingRForest, IosphereX, IosphereY, cv=kf)
-    baggingIosphereDTreeScore = cross_val_score(baggingDTree, IosphereX, IosphereY, cv=kf)
 
-    baggingIosphereKNeighborPredict = r2(IosphereY, cross_val_predict(baggingKNeighbor, IosphereX, IosphereY, cv=kf))
-    baggingIosphereRForestPredict = r2(IosphereY, cross_val_predict(baggingRForest, IosphereX, IosphereY, cv=kf))
-    baggingIosphereDTreePredict = r2(IosphereY, cross_val_predict(baggingDTree, IosphereX, IosphereY, cv=kf))
+
+
+
+
+
+
+    #
+    # baggingIrisKNeighborIrisScore = cross_val_score(baggingKNeighbor, Iris_X, Iris_y, cv=kf)
+    # baggingIrisRForestIrisScore = cross_val_score(baggingRForest, Iris_X, Iris_y, cv=kf)
+    # baggingIrisDTreeScore = cross_val_score(baggingDTree, Iris_X, Iris_y, cv=kf)
+    #
+    # baggingIrisKNeighborIrisPredict = r2(Iris_y, cross_val_predict(baggingKNeighbor, Iris_X, Iris_y, cv=kf))
+    # baggingIrisRForestIrisPredict = r2(Iris_y, cross_val_predict(baggingRForest, Iris_X, Iris_y, cv=kf))
+    # baggingIrisDTreePredict = r2(Iris_y, cross_val_predict(baggingDTree, Iris_X, Iris_y, cv=kf))
+    #
+    #
+    # #bagging iosphere dataset
+    # baggingIosphereKNeighborScore = cross_val_score(baggingKNeighbor, IosphereX, IosphereY, cv=kf)
+    # baggingIosphereRForestScore = cross_val_score(baggingRForest, IosphereX, IosphereY, cv=kf)
+    # baggingIosphereDTreeScore = cross_val_score(baggingDTree, IosphereX, IosphereY, cv=kf)
+    #
+    # baggingIosphereKNeighborPredict = r2(IosphereY, cross_val_predict(baggingKNeighbor, IosphereX, IosphereY, cv=kf))
+    # baggingIosphereRForestPredict = r2(IosphereY, cross_val_predict(baggingRForest, IosphereX, IosphereY, cv=kf))
+    # baggingIosphereDTreePredict = r2(IosphereY, cross_val_predict(baggingDTree, IosphereX, IosphereY, cv=kf))
 
     #print bagging score mean
-    print('========================')
-
-    print('Bagging mean score')
-
-    print('========================')
-
-    print('Average score for bagging using KNeighbor - Iris:', baggingIrisKNeighborIrisScore.mean())
-    print('Average score for bagging using Random Forest - Iris:', baggingIrisRForestIrisScore.mean())
-    print('Average score for bagging using Decision Tree - Iris:', baggingIrisDTreeScore.mean())
-
-    print()
-
-    print('Average score for bagging using KNeighbor - Iosphere:', baggingIosphereKNeighborScore.mean())
-    print('Average score for bagging using Random Forest - Iosphere:', baggingIosphereRForestScore.mean())
-    print('Average score for bagging using Decision Tree - Iosphere:',  baggingIosphereDTreeScore.mean())
+    # print('========================')
+    #
+    # print('Bagging mean score')
+    #
+    # print('========================')
+    #
+    # print('Average score for bagging using KNeighbor - Iris:', baggingIrisKNeighborIrisScore.mean())
+    # print('Average score for bagging using Random Forest - Iris:', baggingIrisRForestIrisScore.mean())
+    # print('Average score for bagging using Decision Tree - Iris:', baggingIrisDTreeScore.mean())
+    #
+    # print()
+    #
+    # print('Average score for bagging using KNeighbor - Iosphere:', baggingIosphereKNeighborScore.mean())
+    # print('Average score for bagging using Random Forest - Iosphere:', baggingIosphereRForestScore.mean())
+    # print('Average score for bagging using Decision Tree - Iosphere:',  baggingIosphereDTreeScore.mean())
+    #
+    # print('Average score for bagging using KNeighbor - Iosphere:', baggingIosphereKNeighborScore.mean())
+    # print('Average score for bagging using Random Forest - Iosphere:', baggingIosphereRForestScore.mean())
+    # print('Average score for bagging using Decision Tree - Iosphere:',  baggingIosphereDTreeScore.mean())
 
     #print bagging prediction
-    print()
-
-    print('========================')
-
-    print('Bagging prediction accuracy')
-
-    print('========================')
-
-    print('Prediction accuracy for bagging using KNeighbor - Iris:', baggingIrisKNeighborIrisPredict)
-    print('Prediction accuracy for bagging using Random Forest - Iris:', baggingIrisRForestIrisPredict)
-    print('Prediction accuracy for bagging using Decision Tree - Iris:', baggingIrisDTreePredict)
-
-    print()
-
-    print('Prediction accuracy for bagging using KNeighbor - Iosphere:', baggingIosphereKNeighborPredict)
-    print('Prediction accuracy for bagging using Random Forest - Iosphere:', baggingIosphereRForestPredict)
-    print('Prediction accuracy for bagging using Decision Tree - Iosphere:',  baggingIosphereDTreePredict)
-
-    print()
+    # print()
+    #
+    # print('========================')
+    #
+    # print('Bagging prediction accuracy')
+    #
+    # print('========================')
+    #
+    # print('Prediction accuracy for bagging using KNeighbor - Iris:', baggingIrisKNeighborIrisPredict)
+    # print('Prediction accuracy for bagging using Random Forest - Iris:', baggingIrisRForestIrisPredict)
+    # print('Prediction accuracy for bagging using Decision Tree - Iris:', baggingIrisDTreePredict)
+    #
+    # print()
+    #
+    # print('Prediction accuracy for bagging using KNeighbor - Iosphere:', baggingIosphereKNeighborPredict)
+    # print('Prediction accuracy for bagging using Random Forest - Iosphere:', baggingIosphereRForestPredict)
+    # print('Prediction accuracy for bagging using Decision Tree - Iosphere:',  baggingIosphereDTreePredict)
+    #
+    # print()
 
 
     #adaBoost the iris dataset
 
-    adaBoostIrisETreeIrisScore = cross_val_score(adaBoostEClass, Iris_X, Iris_y, cv=kf)
-    adaBoostIrisRForestIrisScore = cross_val_score(adaBoostRForest, Iris_X, Iris_y, cv=kf)
-    adaBoostIrisDTreeScore = cross_val_score(adaBoostDTree, Iris_X, Iris_y, cv=kf)
-
-    adaBoostIrisETreeIrisPredict = r2(Iris_y, cross_val_predict(adaBoostEClass, Iris_X, Iris_y, cv=kf))
-    adaBoostIrisRForestIrisPredict = r2(Iris_y, cross_val_predict(adaBoostRForest, Iris_X, Iris_y, cv=kf))
-    adaBoostIrisDTreePredict = r2(Iris_y, cross_val_predict(adaBoostDTree, Iris_X, Iris_y, cv=kf))
-
-    #adaBoost iosphere dataset
-    adaBoostIosphereETreeScore = cross_val_score(adaBoostEClass, IosphereX, IosphereY, cv=kf)
-    adaBoostIosphereRForestScore = cross_val_score(adaBoostRForest, IosphereX, IosphereY, cv=kf)
-    adaBoostIosphereDTreeScore = cross_val_score(adaBoostDTree, IosphereX, IosphereY, cv=kf)
-
-    adaBoostIosphereETreePredict = r2(IosphereY, cross_val_predict(adaBoostEClass, IosphereX, IosphereY, cv=kf))
-    adaBoostIosphereRForestPredict = r2(IosphereY, cross_val_predict(adaBoostRForest, IosphereX, IosphereY, cv=kf))
-    adaBoostIosphereDTreePredict = r2(IosphereY, cross_val_predict(adaBoostDTree, IosphereX, IosphereY, cv=kf))
+    # adaBoostIrisETreeIrisScore = cross_val_score(adaBoostEClass, Iris_X, Iris_y, cv=kf)
+    # adaBoostIrisRForestIrisScore = cross_val_score(adaBoostRForest, Iris_X, Iris_y, cv=kf)
+    # adaBoostIrisDTreeScore = cross_val_score(adaBoostDTree, Iris_X, Iris_y, cv=kf)
+    #
+    # adaBoostIrisETreeIrisPredict = r2(Iris_y, cross_val_predict(adaBoostEClass, Iris_X, Iris_y, cv=kf))
+    # adaBoostIrisRForestIrisPredict = r2(Iris_y, cross_val_predict(adaBoostRForest, Iris_X, Iris_y, cv=kf))
+    # adaBoostIrisDTreePredict = r2(Iris_y, cross_val_predict(adaBoostDTree, Iris_X, Iris_y, cv=kf))
+    #
+    # #adaBoost iosphere dataset
+    # adaBoostIosphereETreeScore = cross_val_score(adaBoostEClass, IosphereX, IosphereY, cv=kf)
+    # adaBoostIosphereRForestScore = cross_val_score(adaBoostRForest, IosphereX, IosphereY, cv=kf)
+    # adaBoostIosphereDTreeScore = cross_val_score(adaBoostDTree, IosphereX, IosphereY, cv=kf)
+    #
+    # adaBoostIosphereETreePredict = r2(IosphereY, cross_val_predict(adaBoostEClass, IosphereX, IosphereY, cv=kf))
+    # adaBoostIosphereRForestPredict = r2(IosphereY, cross_val_predict(adaBoostRForest, IosphereX, IosphereY, cv=kf))
+    # adaBoostIosphereDTreePredict = r2(IosphereY, cross_val_predict(adaBoostDTree, IosphereX, IosphereY, cv=kf))
 
     #print adaBoost score mean
-    print('========================')
-
-    print('AdaBoost mean score')
-
-    print('========================')
-
-    print('Average score for adaBoost using Extra Tree - Iris:', adaBoostIrisETreeIrisScore.mean())
-    print('Average score for adaBoost using Random Forest - Iris:', adaBoostIrisRForestIrisScore.mean())
-    print('Average score for adaBoost using Decision Tree - Iris:', adaBoostIrisDTreeScore.mean())
-
-    print()
-
-    print('Average score for adaBoost using Extra Tree - Iosphere:', adaBoostIosphereETreeScore.mean())
-    print('Average score for adaBoost using Random Forest - Iosphere:', adaBoostIosphereRForestScore.mean())
-    print('Average score for adaBoost using Decision Tree - Iosphere:',  adaBoostIosphereDTreeScore.mean())
-
-    print()
+    # print('========================')
+    #
+    # print('AdaBoost mean score')
+    #
+    # print('========================')
+    #
+    # print('Average score for adaBoost using Extra Tree - Iris:', adaBoostIrisETreeIrisScore.mean())
+    # print('Average score for adaBoost using Random Forest - Iris:', adaBoostIrisRForestIrisScore.mean())
+    # print('Average score for adaBoost using Decision Tree - Iris:', adaBoostIrisDTreeScore.mean())
+    #
+    # print()
+    #
+    # print('Average score for adaBoost using Extra Tree - Iosphere:', adaBoostIosphereETreeScore.mean())
+    # print('Average score for adaBoost using Random Forest - Iosphere:', adaBoostIosphereRForestScore.mean())
+    # print('Average score for adaBoost using Decision Tree - Iosphere:',  adaBoostIosphereDTreeScore.mean())
+    #
+    # print()
 
     #print adaBoost prediction
-    print('========================')
-
-    print('AdaBoost prediction accuracy')
-
-    print('========================')
-
-    print('Prediction accuracy for adaBoost using Extra Tree - Iris:', adaBoostIrisETreeIrisPredict)
-    print('Prediction accuracy for adaBoost using Random Forest - Iris:', adaBoostIrisRForestIrisPredict)
-    print('Prediction accuracy for adaBoost using Decision Tree - Iris:', adaBoostIrisDTreePredict)
-
-    print()
-
-    print('Prediction accuracy for adaBoost using Extra Tree - Iosphere:', adaBoostIosphereETreePredict)
-    print('Prediction accuracy for adaBoost using Random Forest - Iosphere:', adaBoostIosphereRForestPredict)
-    print('Prediction accuracy for adaBoost using Decision Tree - Iosphere:',  adaBoostIosphereDTreePredict)
-
-    print()
+    # print('========================')
+    #
+    # print('AdaBoost prediction accuracy')
+    #
+    # print('========================')
+    #
+    # print('Prediction accuracy for adaBoost using Extra Tree - Iris:', adaBoostIrisETreeIrisPredict)
+    # print('Prediction accuracy for adaBoost using Random Forest - Iris:', adaBoostIrisRForestIrisPredict)
+    # print('Prediction accuracy for adaBoost using Decision Tree - Iris:', adaBoostIrisDTreePredict)
+    #
+    # print()
+    #
+    # print('Prediction accuracy for adaBoost using Extra Tree - Iosphere:', adaBoostIosphereETreePredict)
+    # print('Prediction accuracy for adaBoost using Random Forest - Iosphere:', adaBoostIosphereRForestPredict)
+    # print('Prediction accuracy for adaBoost using Decision Tree - Iosphere:',  adaBoostIosphereDTreePredict)
+    #
+    # print()
 
 
 

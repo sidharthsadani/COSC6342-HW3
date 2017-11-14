@@ -339,70 +339,7 @@ for i in range(2,11,2):
     train_error /= i
     cv_error /= i
 
-    print("baggingKNeighbor train error,", train_error,  ",baggingKNeighbor cv error,", cv_error)
 
-    train_error, cv_error = 0.0, 0.0
-    for train_index, cross_index in kf.split(IosphereX):
-        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
-        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
-        baggingRForest.fit(Xtrain, ytrain)
-        train_error += baggingRForest.score(Xtrain, ytrain) # train error
-        cv_error += baggingRForest.score(Xcrosset, ycrosset) # cv error
-
-    train_error /= i
-    cv_error /= i
-    print("baggingRForest train error,", train_error, ",baggingRForest cv error,", cv_error)
-
-    train_error, cv_error = 0.0, 0.0
-    for train_index, cross_index in kf.split(IosphereX):
-        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
-        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
-        baggingDTree.fit(Xtrain, ytrain)
-        train_error += baggingDTree.score(Xtrain, ytrain) # train error
-        cv_error += baggingDTree.score(Xcrosset, ycrosset) # cv error
-
-    train_error /= i
-    cv_error /= i
-
-    print("baggingDTree train error,", train_error, ",baggingDTree cv error,", cv_error)
-
-    train_error, cv_error = 0.0, 0.0
-    for train_index, cross_index in kf.split(IosphereX):
-        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
-        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
-        adaBoostEClass.fit(Xtrain, ytrain)
-        train_error += adaBoostEClass.score(Xtrain, ytrain) # train error
-        cv_error += adaBoostEClass.score(Xcrosset, ycrosset) # cv error
-
-    train_error /= i
-    cv_error /= i
-
-    print("adaBoostEClass train error,", train_error,  ",adaBoostEClass cv error,", cv_error)
-
-    train_error, cv_error = 0.0, 0.0
-    for train_index, cross_index in kf.split(IosphereX):
-        Xtrain , Xcrosset = IosphereX[train_index], IosphereX[cross_index]
-        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
-        adaBoostRForest.fit(Xtrain, ytrain)
-        train_error += adaBoostRForest.score(Xtrain, ytrain) # train error
-        cv_error += adaBoostRForest.score(Xcrosset, ycrosset) # cv error
-
-    train_error /= i
-    cv_error /= i
-    print("adaBoostRForest train error,", train_error, ",adaBoostRForest cv error,", cv_error)
-
-    train_error, cv_error = 0.0, 0.0
-    for train_index, cross_index in kf.split(IosphereX):
-        Xtrain , Xcrosset  = IosphereX[train_index], IosphereX[cross_index]
-        ytrain , ycrosset = IosphereY[train_index], IosphereY[cross_index]
-        adaBoostDTree.fit(Xtrain, ytrain)
-        train_error += adaBoostDTree.score(Xtrain, ytrain) # train error
-        cv_error += adaBoostDTree.score(Xcrosset, ycrosset) # cv error
-
-    train_error /= i
-    cv_error /= i
-
-    print("adaBoostDTree train error,", train_error, ",adaBoostDTree cv error,", cv_error)
 
 
 
